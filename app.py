@@ -46,14 +46,13 @@ def handle_message(event):
     today = datetime.datetime.today().weekday()
     NowHour = datetime.now().hour
     NowMinute = datetime.now().minute
-    notification = """同學好，
+    try: 
+        if "Weekly" in event.message.text:
+            notification = """同學好，
 請務必記得在今天完成 Weekly Report 的填寫。
 
 SR
 """
-    message = TextSendMessage(text=notification)
-    try: 
-        if "Weekly" in event.message.text.strip():
             message = TextSendMessage(text=notification)
             line_bot_api.reply_message(event.reply_token, message)
     except Exception as e:
