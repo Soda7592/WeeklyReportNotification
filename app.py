@@ -51,6 +51,7 @@ def handle_message(event):
 
 SR
     """
+    message = TextSendMessage(text=event.message.text)
     if True:
         line_bot_api.reply_message(event.reply_token, message)
 
