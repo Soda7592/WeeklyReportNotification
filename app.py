@@ -51,7 +51,7 @@ def handle_message(event):
 
 SR
     """
-    if NowHour == 21 and NowMinute == 6 :
+    if True:
         line_bot_api.reply_message(event.reply_token, message)
 
 import os
