@@ -43,14 +43,6 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    NowHour = datetime.now().hour
-    NowMinute = datetime.now().minute
-    message = """
-同學好，
-請記得要在今天完成 Weekly Report 的填寫。
-
-SR
-    """
     message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
 
