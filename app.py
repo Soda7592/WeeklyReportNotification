@@ -43,21 +43,16 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    today = datetime.datetime.today().weekday()
-    NowHour = datetime.now().hour
-    NowMinute = datetime.now().minute
-    text = event.message.text.lower()
-    try: 
-        if "weekly" == text:
-            notification = """同學好，
+    # today = datetime.datetime.today().weekday()
+    # NowHour = datetime.now().hour
+    # NowMinute = datetime.now().minute
+    if "報告" == event.message.text:
+        notification = """同學好，
 請務必記得在今天完成 Weekly Report 的填寫。
 
 SR
 """
-            message = TextSendMessage(text=notification)
-            line_bot_api.reply_message(event.reply_token, message)
-    except Exception as e:
-        print(f"Error: {e}")
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=notification))
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
