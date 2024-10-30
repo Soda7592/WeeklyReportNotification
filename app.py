@@ -43,13 +43,16 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    NowHour = datetime.now().hour
+    NowMinute = datetime.now().minute
     notification = """同學好，
 請務必記得在今天完成 Weekly Report 的填寫。
 
 SR
 """
-    message = TextSendMessage(text=notification)
-    line_bot_api.reply_message(event.reply_token, message)
+    if event.message.text == "Weekly" :
+        message = TextSendMessage(text=notification)
+        line_bot_api.reply_message(event.reply_token, message)
 
 import os
 if __name__ == "__main__":
