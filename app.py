@@ -43,8 +43,10 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    notification = """
-QQ
+    notification = """同學好，
+請務必記得在今天完成 Weekly Report 的填寫。
+
+SR
 """
     message = TextSendMessage(text=notification)
     line_bot_api.reply_message(event.reply_token, message)
