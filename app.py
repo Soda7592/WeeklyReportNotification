@@ -50,7 +50,10 @@ def handle_message(event):
 
 SR
 """
-    if event.message.text == "Weekly" :
+    message = TextSendMessage(text=notification)
+    print(event.message.text)
+    receive = TextMessage(text=event.message.text)
+    if receive == "Weekly" :
         message = TextSendMessage(text=notification)
         line_bot_api.reply_message(event.reply_token, message)
 
