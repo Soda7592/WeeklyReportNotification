@@ -43,6 +43,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    today = datetime.datetime.today().weekday()
     NowHour = datetime.now().hour
     NowMinute = datetime.now().minute
     notification = """同學好，
@@ -51,12 +52,13 @@ def handle_message(event):
 SR
 """
     message = TextSendMessage(text=notification)
-    print(event.message.text)
-    if "Weekly" in event.message.text:
-        message = TextSendMessage(text=notification)
-        line_bot_api.reply_message(event.reply_token, message)
+    try: 
+        if "Weekly" in event.message.text.strip():
+            message = TextSendMessage(text=notification)
+            line_bot_api.reply_message(event.reply_token, message)
+    except Exception as e:
+        print(f"Error: {e}")
 
-import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
